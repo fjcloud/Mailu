@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
  && find . -type f -exec chmod 644 {} \; \
  && chown -R www-data: * \
  && apt-get purge -y unzip \
- && rm -rf /var/lib/apt/lists
+ && rm -rf /var/lib/apt/lists \
  && sed -i "s/80/5000/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 COPY include.php /var/www/html/include.php
