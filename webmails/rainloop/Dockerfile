@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
  && chown -R www-data: * \
  && apt-get purge -y unzip \
  && rm -rf /var/lib/apt/lists
+ && sed -i "s/80/5000/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 COPY include.php /var/www/html/include.php
 COPY php.ini /php.ini
@@ -34,7 +35,7 @@ COPY default.ini /default.ini
 
 COPY start.py /start.py
 
-EXPOSE 80/tcp
+EXPOSE 5000/tcp
 VOLUME ["/data"]
 
 CMD /start.py
